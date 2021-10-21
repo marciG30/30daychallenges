@@ -7,7 +7,7 @@ library(tidyverse)
 library(ggforce)
 theme_set(theme_void())
 library(readxl)
-
+library(lubridate)
 
 ## load the timeline file
 
@@ -16,8 +16,11 @@ timeline = read_excel("may BES run timeline.xlsx")
 timeline %>% 
   ggplot(aes(x = datetime, label = actions)) +
   
-  #annotate("segment", x = 5528, xend = 8549, y = 0, yend = 0, size = 1, color = "#e76f51")+
-  
+  annotate("segment", 
+           x = ymd_hms("2021-05-18 12:00:00"), 
+           xend = ymd_hms("2021-06-28 12:00:00"), 
+           y = 0, yend = 0, 
+           size = 1, color = "#e76f51")+
   geom_mark_circle(aes(y = 0, label = actions, group = actions),
                    con.cap = -5, fill = NA, color = NA, label.fontsize = 8, label.hjust = 0,
                    con.size = 0.5, con.border = "one",
